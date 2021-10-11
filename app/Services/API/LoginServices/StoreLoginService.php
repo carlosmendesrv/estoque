@@ -26,7 +26,7 @@ class StoreLoginService
         }
 
         $payload = [
-            'message' => 'Unauthorized'
+            'message' => 'Invalid credentials'
         ];
 
         return response()->json($payload, 401);

@@ -3,13 +3,13 @@
 namespace App\Http\Middleware;
 
 use App\Repositories\JWTRepository;
+use App\Repositories\UserRepository;
 use Closure;
 use Exception;
 use Illuminate\Http\Request;
 
 class JWT
 {
-
     public function handle(Request $request, Closure $next)
     {
         try {
@@ -18,7 +18,9 @@ class JWT
                 throw new Exception('Unauthorized');
             }
 
-            $user = JWTRepository::decode($request->header('Authorization'));
+            $token = str_replace(' Bearer', '', $request->header('Authorization'));
+            $decoded = JWTRepository::decode($token);
+            $user = UserRepository::getByEmail($decoded->email);
 
             if (! $user)
             {

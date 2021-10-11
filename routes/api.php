@@ -17,4 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'API'], function () {
     Route::resource('login', 'LoginController')->only('store');
     Route::resource('register', 'RegisterController')->only('store');
+    Route::get('', function () {
+        return 'Hello World';
+    })->middleware('JWT');
 });
