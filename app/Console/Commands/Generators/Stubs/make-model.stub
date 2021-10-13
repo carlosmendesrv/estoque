@@ -1,0 +1,37 @@
+<?php
+
+
+namespace App\Models;
+
+use App\Traits\Uuid;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+
+
+class GenericModel extends Model
+{
+
+    use Uuid, LogsActivity;
+
+    /**
+     * Creat log to the fillable attributes.
+     *
+     * @var boolean
+     */
+    protected static $logFillable = true;
+
+    /**
+     * Disable the id autoincrementing for uuid usage.
+     *
+     * @var boolean
+     */
+    public $incrementing = false;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+
+    ];
+}

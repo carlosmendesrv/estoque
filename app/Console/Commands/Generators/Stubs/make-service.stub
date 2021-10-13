@@ -1,0 +1,13 @@
+<?php
+
+
+namespace DummyNamespace;
+
+
+class GenericService
+{
+    public static function execute()
+    {
+        //TODO method
+    }
+}
