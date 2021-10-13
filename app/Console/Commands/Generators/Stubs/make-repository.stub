@@ -1,0 +1,35 @@
+<?php
+
+
+namespace App\Repositories;
+
+use App\Models\Generic;
+
+class GenericRepository
+{
+    public static function index()
+    {
+        return Generic::all();
+    }
+
+    public static function store($data)
+    {
+        return Generic::create($data);
+    }
+
+    public static function update($model, $data)
+    {
+        $model->update($data);
+        return $model;
+    }
+
+    public static function show($id)
+    {
+        return Generic::findOrFail($id);
+    }
+
+    public static function destroy($id)
+    {
+        return Generic::destroy($id);
+    }
+}
