@@ -55,7 +55,7 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        
         $this->repository->store($request->all());
         return redirect()->route('request.index')->with('success', 'Pedido cadastrado com sucesso.');
     }

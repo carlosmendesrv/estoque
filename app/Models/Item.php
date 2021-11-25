@@ -11,7 +11,7 @@ class Item extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'notes','instance_id'
+        'box_qtd', 'box_suggestion','request_id', 'code', 'invetory_qtd', 'status_product', 'status_request'
     ];
 
     public function request(){

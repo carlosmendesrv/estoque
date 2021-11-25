@@ -30,36 +30,26 @@ class RequestRepository
     public function store($request)
     {
 
-        dd($request['lists']);
-        // box_qt
-        // box_suggestion
-        $data = array();
-        foreach($request['lists'] as $key => $value){
-            dd($key['box_qt'][1]);
+        $req = $this->request->create([
+            'store' => $request['store']
+        ]);
+        $res = [];
+        if(isset($request['lists']))
+        {
+            foreach($request['lists'] as $item)
+            {
+                $res[] = $this->item->store([
+                    'request_id' => $req->id,
+                    'box_qtd' => isset($item['box_qtd']) ? $item['box_qtd'] : 0,
+                    'box_suggestion' => isset($item['box_suggestion'])? $item['box_suggestion']: 0,
+                    'code' => 0,
+                    'invetory_qtd' => 0,
+                    'status_product' => 'ok',
+                    'status_request' => 'status_request'
+                ]);
+            }
         }
-        dd($data);
-        // foreach($request as $key => $value){
-        //     dump($key);
-
-
-        // $this->request->create($store);
-        // dd($store);
-        // dd($store);
-        // DB::transaction(function ($request) {
-
-        // $lists['box_qt']  = $request['box_qt'];
-        // $lists['box_suggestion'] = $request['box_suggestion'];
-
-
-
-        // foreach ($lists as $key => $value) {
-        //     dd($key);
-        //     dd($key, $value['1']);
-        // }
-
-
-
-        return $this->request->create($request);
+        dd($res);
     }
 
     public function destroy($id)

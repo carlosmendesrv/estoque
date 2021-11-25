@@ -19,7 +19,7 @@ class ItemRepository
         $item = $this->item
             ->orderBy('created_at', 'DESC')->get();
             // ->paginate(20);
-          
+
             // ->get();
         return $item;
     }

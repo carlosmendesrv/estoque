@@ -48,12 +48,12 @@
                                                     <td>{{ $product->code }}</td>
                                                     <td> {{ $product->description }}</td>
                                                     <td>
-                                                        <input type="text" name="lists[box_qt][{{$product->id}}]"
+                                                        <input type="text" name="lists[{{$product->id}}][box_qtd]"
                                                             value="{{ old('box_qtd') }}" class="form-control"
                                                             id="box_qtd" autofocus>
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="lists[box_suggestion][{{$product->id}}]"
+                                                        <input type="text" name="lists[{{$product->id}}][box_suggestion]"
                                                             value="{{ old('box_suggestion') }}" class="form-control"
                                                             id="box_suggestion" autofocus>
                                                     </td>
