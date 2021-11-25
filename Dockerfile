@@ -10,9 +10,11 @@ RUN apk add --no-cache  --virtual .ext-deps \
         autoconf \
         g++ \
         make \
-        libpng-dev
+        libpng-dev \
+        postgresql-dev
 
-RUN docker-php-ext-install pdo pdo_mysql gd
+
+RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql gd 
 
 RUN apk add --no-cache tzdata
 ENV TZ America/Sao_Paulo
@@ -20,6 +22,8 @@ ENV TZ America/Sao_Paulo
 RUN echo 'memory_limit = -1' >> /usr/local/etc/php/php.ini
 RUN echo 'upload_max_filesize = 40M' >> /usr/local/etc/php/php.ini
 RUN echo 'post_max_size = 40M' >> /usr/local/etc/php/php.ini
+# RUN echo 'extension=pdo_pgsql' >> /usr/local/etc/php/php.ini
+# RUN echo 'extension=pgsql' >> /usr/local/etc/php/php.ini
 
 ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \

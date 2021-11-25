@@ -45,16 +45,20 @@ services:
             - MYSQL_ROOT_PASSWORD=root
         networks:
             - app-network
-
-    queue:
-        container_name: p000-queue
-        restart: always
-        build: .
-        command: php artisan queue:work
-        volumes:
-            - .:/var/www:delegated
+    postgres:
+        image: postgres
+        container_name: postgres
+        restart: unless-stopped
+        # volumes:
+            #  - postgres:/var/lib/postgresql/data
+        # - ./init-database.sh:/docker-entrypoint-initdb.d/init-database.sh
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
         networks:
             - app-network
+        ports:
+            - 5432:5432
 
 networks:
     app-network:

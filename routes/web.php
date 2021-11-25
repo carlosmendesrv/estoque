@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    // $users = DB::table('tb_produtoestoque')
+    // ->select('nr_quantidade')
+    // ->where('cd_produto','6811')
+    // ->where('cd_empresa','1')
+
+    // ->where('dep','20')
+
+    // ->get();
+
+    // dd($users);
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('product', 'ProductController');
+Route::resource('request', 'RequestController');

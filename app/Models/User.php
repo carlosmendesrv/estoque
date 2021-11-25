@@ -14,6 +14,8 @@ class User extends Authenticatable
 
     public $incrementing = false;
 
+    protected $connection = 'mysql';
+    
     /**
      * The attributes that are mass assignable.
      *

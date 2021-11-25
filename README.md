@@ -28,3 +28,4 @@ For WEB development the native laravel ecosystem is used. The [recaptcha](https:
 #### SETUP
 * Set APP_GUARD value to "web"
 * Use web.php to register routes
+# estoque
