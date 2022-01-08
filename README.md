@@ -29,3 +29,10 @@ For WEB development the native laravel ecosystem is used. The [recaptcha](https:
 * Set APP_GUARD value to "web"
 * Use web.php to register routes
 # estoque
+
+### PEDIDO
+
+# Status
+P - Pendente
+F - Fechado
+C - Cancelado

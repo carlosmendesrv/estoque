@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+
 use App\Models\Product;
 
 class ProductRepository
@@ -16,12 +17,9 @@ class ProductRepository
 
     public function index()
     {
-        $query = $this->product
-            ->orderBy('created_at', 'DESC')->get();
-            // ->paginate(20);
-          
-            // ->get();
-        return $query;
+        return $this->product
+            ->orderBy('created_at', 'DESC')
+            ->paginate(20);
     }
 
     public function store($request)

@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('request_id')->nullable();
             $table->string('code');
+            $table->string('description');
             $table->string('box_qtd');
             $table->string('box_suggestion');
             $table->string('invetory_qtd');

@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Request extends Model
 {
     use HasFactory;
+    protected $connection = 'mysql';
 
-    protected $fillable = ['n_pedidos','store'];
+    protected $fillable = ['store', 'status'];
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 }

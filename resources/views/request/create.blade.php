@@ -17,6 +17,7 @@
                         <div class="card-body">
                             @include('_include._flash-message')
                             <form method="POST" action="{{ route('request.store') }}">
+                                <input type="hidden" name="status" value="P">
                                 @csrf
                                 <div class="container">
                                     <div class="form-group row">
@@ -48,6 +49,13 @@
                                                     <td>{{ $product->code }}</td>
                                                     <td> {{ $product->description }}</td>
                                                     <td>
+                                                        <input type="hidden" name="lists[{{$product->id}}][code]"
+                                                               value="{{ $product->code  }}" class="form-control"
+                                                               id="box_qtd" autofocus>
+                                                        <input type="hidden" name="lists[{{$product->id}}][description]"
+                                                               value="{{ $product->description }}" class="form-control"
+                                                               id="description" autofocus>
+
                                                         <input type="text" name="lists[{{$product->id}}][box_qtd]"
                                                             value="{{ old('box_qtd') }}" class="form-control"
                                                             id="box_qtd" autofocus>
@@ -58,11 +66,11 @@
                                                             id="box_suggestion" autofocus>
                                                     </td>
                                                     <td>
-                                                        <select class="form-control">
+                                                        <select  name="lists[{{$product->id}}][status]" class="form-control">
                                                             <option selected>Selecione um status</option>
-                                                            <option>Verde</option>
-                                                            <option>Amarelo</option>
-                                                            <option>Vermelho</option>
+                                                            <option value="0">Verde</option>
+                                                            <option value="1">Amarelo</option>
+                                                            <option value="2">Vermelho</option>
                                                         </select>
                                                     </td>
                                                 </tr>

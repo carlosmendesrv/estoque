@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $this->repository->store($request->all());
         return redirect()->route('product.index')->with('success', 'Produto cadastrado com sucesso.');
@@ -90,7 +91,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        // $this->repository->destroy($id);
-        // return redirect()->route('product.index')->with('success', 'Produto deletado com sucesso.');
+         $this->repository->destroy($id);
+         return redirect()->route('product.index')->with('success', 'Produto deletado com sucesso.');
     }
 }

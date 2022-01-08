@@ -22,11 +22,12 @@
                         @if(!count($products))
                             <h5 class="text-center"> Ops! Não encontramos um produto cadastrado.</h5>
                         @else
-                            <table id="myTable" class="display">
+                            <table id="myTable" class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th scope="col">CODIGO</th>
-                                    <th scope="col">DESCRIÇÃO</th>
+                                    <th scope="col">Codigo</th>
+                                    <th scope="col">Descrição</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -34,31 +35,27 @@
                                     <tr>
                                         <td>{{$product->code}}</td>
                                         <td>{{$product->description}}</td>
-            
-                                        {{-- <td>
-                                            <div class="btn-group">
-                                                <form method="POST"
-                                                      action="{{ route('product.destroy',[$product->id]) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Excluir</button>
-                                                </form>
-                                            </div>
-                                        </td> --}}
+                                        <td>
+                                            <form method="POST"
+                                                  action="{{ route('product.destroy',[$product->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         @endif
                     </div>
-            
+
                 </div>
             </div>
-     
         </div>
     </div>
 
-    {{-- <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
         {!! $products->links() !!}
-    </div> --}}
+    </div>
 @endsection

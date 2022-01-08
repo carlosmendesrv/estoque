@@ -16,17 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
-    // $users = DB::table('tb_produtoestoque')
-    // ->select('nr_quantidade')
-    // ->where('cd_produto','6811')
-    // ->where('cd_empresa','1')
-
-    // ->where('dep','20')
-
-    // ->get();
-
-    // dd($users);
     return view('welcome');
 });
 

@@ -23,23 +23,39 @@
                         @else
                             <table id="myTable" class="table table-hover">
                                 <thead>
-                                    <tr>
-                                        <th scope="col">Numero do Pedido</th>
-                                        <th scope="col">Loja</th>
-                                        <th scope="col">Data de Solicitação</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
+                                <tr>
+                                    <th scope="col">Numero do Pedido</th>
+                                    <th scope="col">Loja</th>
+                                    <th scope="col">Data de Solicitação</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col"></th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (@$requests as $request)
-                                        <tr>
-                                            {{-- {{-- <td>{{$product->code}}</td> --}}
-                                            <td># {{ $request->id }}</td>
-                                            <td>{{ $request->store }}</td>
-                                            <td>{{ $request->created_at->format('d/m/Y') }}</td>
-                                            <td>Pendente</td>
-                                        </tr>
-                                    @endforeach
+                                @foreach (@$requests as $request)
+                                    <tr>
+                                        <td># {{ $request->id }}</td>
+                                        <td>{{ $request->store }}</td>
+                                        <td>{{ $request->created_at->format('d/m/Y') }}</td>
+                                        <td>
+                                            {{--                                                {{ $request->status=='P' ? 'Pendente' : 'Concluido' }}--}}
+                                            @switch( $request->status)
+                                                @case('C')
+                                                Cancelado
+                                                @break
+                                                @case('F')
+                                                Concluido
+                                                @break
+                                                @default
+                                                Pendente
+                                            @endswitch
+
+                                        </td>
+                                        <td><a class="btn btn-secondary" href="{{route('request.edit',$request->id)}}">Editar</a>
+                                            <a class="btn btn-info" href="{{route('request.show',$request->id)}}">Visualizar</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         @endif
