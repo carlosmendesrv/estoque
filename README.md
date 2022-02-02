@@ -5,7 +5,7 @@
     <a href="https://spatie.be/docs/laravel-permission/v5/introduction"><img src="https://img.shields.io/static/v1?label=Spatie Permissions&message=5.1&color=1f6feb" alt="Permissions Version"></a>
     <a href="https://spatie.be/docs/laravel-activitylog/v4/introduction"><img src="https://img.shields.io/static/v1?label=Activitylog&message=4.2&color=1f6feb" alt="Activitylog Version"></a>
 </div>
-
+ a
 ## About
 In this project [Spatie Permissions](https://spatie.be/docs/laravel-permission/v5/introduction) is used as default ACL and [Activitylog](https://spatie.be/docs/laravel-activitylog/v4/introduction) for register logs.
 
