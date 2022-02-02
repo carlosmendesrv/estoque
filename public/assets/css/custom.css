@@ -1,0 +1,38 @@
+
+.card-body {
+    padding: 0.50rem !important;;
+}
+
+.table-list {
+    padding: 0.4rem !important;
+}
+
+.table-list th {
+    padding: 0.4rem !important;
+}
+
+.table-list td {
+    padding: 0.4rem !important;
+}
+
+.table-list tbody {
+    font-size: 0.85rem;
+}
+
+@media (max-width: 575.98px) {
+    .td-center {
+        text-align: -webkit-center;
+    }
+
+    .input-resize {
+        width: 45px !important;
+    }
+}
+
+@media (min-width: 768px) {
+}
+
+
+.align-right {
+    text-align-last: right;
+}

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Ramsey\Uuid\Uuid;
 
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrap();
         /* Begin : UUID Adjustment */
         Permission::retrieved(function (Permission $permission) {
             $permission->incrementing = false;

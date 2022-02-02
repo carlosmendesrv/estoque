@@ -22,10 +22,7 @@ class RequestRepository
 
     public function index()
     {
-        $query = $this->request
-            ->orderBy('created_at', 'DESC')
-            ->get();
-        return $query;
+        return $this->request->orderBy('created_at', 'DESC')->paginate('10');
     }
 
     public function store($request)
