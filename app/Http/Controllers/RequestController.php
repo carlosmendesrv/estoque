@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestRequest;
 use App\Repositories\ItemRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\RequestRepository;
@@ -59,7 +60,7 @@ class RequestController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestRequest $request)
     {
         $this->repository->store($request->all());
         return redirect()->route('request.index')->with('success', 'Pedido cadastrado com sucesso.');
@@ -77,7 +78,7 @@ class RequestController extends Controller
         $products = $this->repository->edit($id);
         $items = $this->getProductionStock($products);
 
-        return view('request.show', compact('request', 'items'));
+        return view('request.show', compact('request', 'items','id'));
     }
 
     public function getProductionStock($products)

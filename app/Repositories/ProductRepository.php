@@ -18,8 +18,8 @@ class ProductRepository
     public function index()
     {
         return $this->product
-            ->orderBy('created_at', 'DESC')
-            ->paginate(20);
+            ->orderBy('description', 'ASC')
+            ->paginate(10);
     }
 
     public function store($request)

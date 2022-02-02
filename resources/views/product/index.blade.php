@@ -1,61 +1,63 @@
 @extends('layouts.app')
 
-@section('styles')
-    <link href="{{ asset('//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-@endsection
-
 @section('content')
-    <div class="container">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Cadastro de Produtos</h1>
-            <a href="{{ route('product.create') }}"
-               class="d-none d-sm-inline-block btn btn btn-primary shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-50"></i> Novo Produto
-            </a>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-md-8 offset-1">
-                <div class="card">
-                    <div class="card-header">{{ __('Lista de Produtos') }}</div>
-                    <div class="card-body">
-                        @include('_include._flash-message')
-                        @if(!count($products))
-                            <h5 class="text-center"> Ops! Não encontramos um produto cadastrado.</h5>
-                        @else
-                            <table id="myTable" class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Codigo</th>
-                                    <th scope="col">Descrição</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach(@$products as $product)
-                                    <tr>
-                                        <td>{{$product->code}}</td>
-                                        <td>{{$product->description}}</td>
-                                        <td>
-                                            <form method="POST"
-                                                  action="{{ route('product.destroy',[$product->id]) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Excluir</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        @endif
-                    </div>
+    <div class="page-title-box d-flex align-items-center justify-content-between">
+        <h4 class="mb-0">Produtos</h4>
 
-                </div>
+        <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item active">Produto</li>
+                <li class="breadcrumb-item">Lista</li>
+            </ol>
+        </div>
+    </div>
+    <div class="card col-md-6 offset-md-3">
+        {{--            <div class="card-body">--}}
+        <div class="row">
+            <div class="col-md-12" style="text-align-last: right">
+                <a href="{{ route('product.create') }}" style="font-size: 15px">
+                    <i class="ri-play-list-add-line"></i>&ensp;Novo Produto
+                </a>
             </div>
         </div>
+        @include('_include._flash-message')
+        @if(!count($products))
+            <div class="container-fluid text-center">
+                <p> Ops! Você ainda não tem produtos cadastrados.</p>
+                <br>
+                <img width="550vw" height="100%" style="text-align-last: center" class="pt-5"
+                     src="{{asset('images/action/empty.svg')}}">
+            </div>
+        @else
+            <table id="myTable" class="table table-hover table-list">
+                <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Descrição</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach(@$products as $product)
+                    <tr>
+                        <td>{{$product->code}}</td>
+                        <td>{{$product->description}}</td>
+                        <td>
+                            <form method="POST"
+                                  action="{{ route('product.destroy',[$product->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn p-0">
+                                    Excluir
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @endif
+        {{ $products->links() }}
     </div>
 
-    <div class="d-flex justify-content-center">
-        {!! $products->links() !!}
-    </div>
 @endsection
