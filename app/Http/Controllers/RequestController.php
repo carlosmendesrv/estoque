@@ -83,22 +83,48 @@ class RequestController extends Controller
 
     public function getProductionStock($products)
     {
-        $listStockProduct = DB::connection('pgsql')
-            ->table('tb_produtoestoque')
-//            ->where('cd_produto', '6811')
-            ->where('cd_empresa', 1)
-            ->select('nr_quantidade', 'cd_produto', 'cd_empresa')
-            ->get();
-
+        // dd($this->getStock('6811'));
+        // $listStockProduct = DB::connection('pgsql')
+        //     ->table('tb_produtoestoque')
+        //     ->where('cd_produto', '6811')
+        //     ->where('cd_empresa', 1)
+        //     ->select('nr_quantidade', 'cd_produto', 'cd_empresa')
+        //     ->get();
+        
+        // dd($this->getStock('6811')->nr_quantidade);
         foreach ($products as $product) {
-            foreach ($listStockProduct as $stockProduct) {
-                if ($product->code == $stockProduct->cd_produto) {
-                    $product['stock_qtd'] =  $stockProduct->nr_quantidade;
-                }
-            }
+            $product['stock_qtd'] = $this->getStock($product['code'])->nr_quantidade;
+            // dd($product);
+            // foreach ($listStockProduct as $stockProduct) {
+            //     if ($product->code == $stockProduct->cd_produto) {
+            //         $product['stock_qtd'] =  $stockProduct->nr_quantidade;
+            //     }
+            // }
         }
-
+        // dd($products);
         return $products;
+    }
+
+    /**
+     * @OA\Get(
+     *   tags={"Tag"},
+     *   path="Path",
+     *   summary="Summary",
+     *   @OA\Parameter(ref="#/components/parameters/id"),
+     *   @OA\Response(response=200, description="OK"),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
+     */
+    public function getStock($codeProduct)
+    {
+        return DB::connection('pgsql')
+        ->table('tb_produtoestoque')
+        ->where('cd_produto', $codeProduct)
+        ->where('cd_empresa', 1)
+        // ->select('nr_quantidade', 'cd_produto', 'cd_empresa')
+        ->select('nr_quantidade')
+        ->first();
     }
 
     /**

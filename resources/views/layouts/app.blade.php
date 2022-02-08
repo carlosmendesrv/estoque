@@ -180,7 +180,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-title">Admin</li>
+                    {{-- <li class="menu-title">Admin</li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="ri-account-circle-line"></i>
@@ -192,7 +192,7 @@
                             <li><a href="auth-recoverpw">Recover Password</a></li>
                             <li><a href="auth-lock-screen">translation.Lock_Screen</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <!-- Sidebar -->
