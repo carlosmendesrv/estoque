@@ -69,7 +69,7 @@ class RequestRepository
                     'box_qtd' => $item['box_qtd'],
                     'box_suggestion' => $item['box_suggestion'],
                     'status_product' => $item['status'],
-                ], $id);
+                ], $id, $item['code']);
             }
         } else {
             return \App\Models\Request::find($id)->update(['status' => $request->status]);

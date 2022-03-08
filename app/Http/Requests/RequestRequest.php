@@ -27,4 +27,12 @@ class RequestRequest extends FormRequest
             'store' => 'required',
         ];
     }
+
+    
+    public function messages()
+    {
+        return [
+            'store.required' => 'O Campo loja é obrigatório.',
+        ];
+    }
 }

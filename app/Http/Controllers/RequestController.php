@@ -149,7 +149,6 @@ class RequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $this->repository->update($request, $id);
         return redirect()->route('request.index')->with('success', 'Pedido atualizado com sucesso.');
     }

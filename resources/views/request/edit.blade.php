@@ -52,6 +52,7 @@
                                 @foreach ($items as $item)
                                     <tr>
                                         <td>{{ $item->code }} - {{ $item->description }}</td>
+                                        <input type="hidden" name="lists[{{$item->id}}][code]" value="{{ $item->code }}">
                                         <td>
 
                                             <input type="text" name="lists[{{$item->id}}][box_qtd]"

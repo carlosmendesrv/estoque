@@ -30,9 +30,11 @@ class ItemRepository
         return $this->item->create($request);
     }
 
-    public function update($request, $id)
+    public function update($request, $id, $code)
     {
-       return $this->item->where('request_id', $id)
+       return $this->item
+            ->where('request_id', $id)
+            ->where('code', $code)
             ->update([
                 'box_qtd' => $request['box_qtd'],
                 'box_suggestion' => $request['box_suggestion'],
